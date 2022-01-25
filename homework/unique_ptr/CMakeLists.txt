@@ -6,6 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(.)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} myuniqueptr.cpp main.cpp)
 
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -pedantic)
