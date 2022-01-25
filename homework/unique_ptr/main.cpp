@@ -4,7 +4,7 @@
 int main() {
 
     // int a = 32;
-    MyUniquePtr<int> myptr1(new int(3));
+    MyUniquePtr<int> myptr1{new int(3)};
 
     std::cout << "myptr1 = " << *myptr1 << '\n';
 
@@ -25,7 +25,6 @@ int main() {
     std::cout << "mypt4 = " << *myptr4 << '\n';
     myptr4 = new int{98};
     std::cout << "mypt4 = " << *myptr4 << '\n';
-
 
 
     return 0;
