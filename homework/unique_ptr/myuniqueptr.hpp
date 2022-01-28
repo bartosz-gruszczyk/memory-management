@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ostream>
+
 template <typename T>
 class MyUniquePtr {
 public:
@@ -42,8 +44,10 @@ public:
     }
 
     void reset(T* other) { //should I check if it's another MyUnique?
-        delete pointer_;
-        pointer_ = other;
+        if (other != this) {  //derefrenacja na this?
+            delete pointer_;
+            pointer_ = other;
+        }
     }
 
     operator bool() {
@@ -56,6 +60,11 @@ public:
 
     bool operator==(const MyUniquePtr<T>& other) {
         return pointer_ == other.get();
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const MyUniquePtr<T>& myPtr) {
+        os << myPtr.get();
+        return os;
     }
 
     // get()

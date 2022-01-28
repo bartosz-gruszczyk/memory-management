@@ -25,6 +25,7 @@ int main() {
     std::cout << "mypt4 = " << *myptr4 << '\n';
     myptr4 = new int{98};
     std::cout << "mypt4 = " << *myptr4 << '\n';
+    std::cout << "mypt4 = " << myptr4 << '\n';
 
 
     return 0;
