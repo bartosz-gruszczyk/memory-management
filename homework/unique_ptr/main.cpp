@@ -26,7 +26,19 @@ int main() {
     myptr4 = new int{98};
     std::cout << "mypt4 = " << *myptr4 << '\n';
     std::cout << "mypt4 = " << myptr4 << '\n';
+    std::cout << "mypt4-> = " << myptr4 << '\n';
 
+    // const int* const b = myptr4.get();
+
+    class Foo{
+    public:
+        int x = 90;
+
+    };
+
+    MyUniquePtr<Foo> fooPtr(new Foo());
+    std::cout << " foo " << fooPtr->x << '\n';
+    MyUniquePtr<Foo> fooPtr2(std::move(fooPtr));
 
     return 0;
 }

@@ -25,12 +25,12 @@ public:
         delete pointer_;
     }
 
-    T operator*() {
+    T& operator*() {
         return *pointer_;
     }
 
-    T operator->() {
-        return *pointer_;
+    T* operator->() {
+        return pointer_;
     }
 
     T* get() const {  // const?
