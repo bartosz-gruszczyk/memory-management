@@ -10,11 +10,11 @@ public:
     MyUniquePtr(const MyUniquePtr<T>& other) = delete;
     MyUniquePtr& operator=(const MyUniquePtr<T>& other) = delete;
 
-    MyUniquePtr(MyUniquePtr<T>&& other) { 
+    MyUniquePtr(MyUniquePtr<T>&& other) noexcept { 
         pointer_ = other.release();
     }
 
-    MyUniquePtr& operator=(MyUniquePtr<T>&& other) {
+    MyUniquePtr& operator=(MyUniquePtr<T>&& other) noexcept {
         if (other != *this) {
             pointer_ = other.release();
         }
@@ -29,7 +29,15 @@ public:
         return *pointer_;
     }
 
+    const T& operator*() const {
+        return *pointer_;
+    }
+
     T* operator->() {
+        return pointer_;
+    }
+
+    const T* operator->() const  {
         return pointer_;
     }
 
@@ -50,7 +58,7 @@ public:
         }
     }
 
-    operator bool() {
+    operator bool() const {
         return pointer_ != nullptr;
     }
 

@@ -28,7 +28,18 @@ int main() {
     std::cout << "mypt4 = " << myptr4 << '\n';
     std::cout << "mypt4-> = " << myptr4 << '\n';
 
+    const MyUniquePtr<int> myptr5(new int{55});
+    const int cx = *myptr5;
+    // ++cx;
+    int x = *myptr5;
+    ++x;
+    // const int* constPtr = myptr5
     // const int* const b = myptr4.get();
+
+    //const T*
+
+    
+
 
     class Foo{
     public:
@@ -39,6 +50,15 @@ int main() {
     MyUniquePtr<Foo> fooPtr(new Foo());
     std::cout << " foo " << fooPtr->x << '\n';
     MyUniquePtr<Foo> fooPtr2(std::move(fooPtr));
+
+    const MyUniquePtr<Foo> myptr6(new Foo());
+    std::cout  << "myptr6: " << myptr6->x << '\n';
+    // myptr6->x = 23;
+    std::cout  << "myptr6: " << myptr6->x << '\n';
+    int i6 = myptr6->x;
+    Foo* cfoo6 = myptr6.get();
+    cfoo6->x = 23;
+    std::cout  << "myptr6: " << myptr6->x << '\n';
 
     return 0;
 }
