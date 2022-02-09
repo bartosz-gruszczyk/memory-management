@@ -1,22 +1,28 @@
 #pragma once
-
+#include <iostream> //temporary
 #include <ostream>
 
 template <typename T>
 class MyUniquePtr {
 public:
-    MyUniquePtr() {}
-    MyUniquePtr(T* pointer) : pointer_{pointer} {}
+    MyUniquePtr() noexcept {}
+
+    explicit MyUniquePtr(T* pointer) noexcept : pointer_{pointer} {}
+
     MyUniquePtr(const MyUniquePtr<T>& other) = delete;
+
     MyUniquePtr& operator=(const MyUniquePtr<T>& other) = delete;
 
     MyUniquePtr(MyUniquePtr<T>&& other) noexcept { 
-        pointer_ = other.release();
+        // if (&other != this) { //not necessary
+            pointer_ = other.release();
+        // }
     }
 
     MyUniquePtr& operator=(MyUniquePtr<T>&& other) noexcept {
-        if (other != *this) {
+        if (&other != this) {
             pointer_ = other.release();
+            // std::cout << "Ctor\n";
         }
         return *this;
     }
@@ -41,7 +47,7 @@ public:
         return pointer_;
     }
 
-    T* get() const {  // const?
+    const T* get() const {  // const?
         return pointer_;
     }
 
@@ -74,15 +80,6 @@ public:
         os << myPtr.get();
         return os;
     }
-
-    // get()
-    // release()
-    
-
-    // reset()
-
-    //operator bool
-    //operator << ?
 
 private:
     T* pointer_ = nullptr;

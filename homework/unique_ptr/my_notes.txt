@@ -1,0 +1,20 @@
+explicit dlatego, zeby nie mozna bylo skompilowac czegos takiego
+
+MyUniquePtr<int> myptr(mypter1.get());
+
+
+const T* get() const {}
+
+potrzebny, zeby:
+
+gdy mamy const MyPtr
+zeby nie zasdzialao
+
+int* ptr = myptr.get()
+
+i przez *ptr możliwa zmiana tego co w srodku
+
+dlatego musi byc const T* zeby mozliwe bylo tylko przypisanie const int* 
+
+a co z reset??
+
