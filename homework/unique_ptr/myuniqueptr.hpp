@@ -22,7 +22,6 @@ public:
     MyUniquePtr& operator=(MyUniquePtr<T>&& other) noexcept {
         if (&other != this) {
             pointer_ = other.release();
-            // std::cout << "Ctor\n";
         }
         return *this;
     }
@@ -47,7 +46,11 @@ public:
         return pointer_;
     }
 
-    const T* get() const {  // const?
+    T* get() {
+        return pointer_;
+    }
+
+    const T* get() const {
         return pointer_;
     }
 
@@ -57,8 +60,8 @@ public:
         return tempPointer;
     }
 
-    void reset(T* other) { //should I check if it's another MyUnique?
-        if (other != this) {  //derefrenacja na this?
+    void reset(T* other) {
+        if (other != pointer_) {
             delete pointer_;
             pointer_ = other;
         }

@@ -18,3 +18,10 @@ dlatego musi byc const T* zeby mozliwe bylo tylko przypisanie const int*
 
 a co z reset??
 
+
+
+T& operator*() const {   - taki operator bez const na poczatku pozwala modyfikować to co w srodku
+    return *pointer_;
+}
+
+

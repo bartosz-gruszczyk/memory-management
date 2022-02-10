@@ -14,11 +14,6 @@ int main() {
 
     // myptr1 = std::move(myptr2);
 
-    // class Foo{
-    // public:
-    //     int x = 90;
-
-    // };
     // int* aptr = &a;
 
     // doSthWrong(aptr);
@@ -50,21 +45,33 @@ int main() {
     
 
     // ====testujemy==== const T* get()
-    int x = *myptr5;
-    ++x;
-    const int* constPtr = myptr5.get();
-    // int* constPtr = myptr5.get();
-    // const int* const b = myptr4.get();
-    std::cout << "myptr5 " <<*myptr5 << '\n';
-    // *constPtr = 44;
-    std::cout << "myptr5 " <<*myptr5 << '\n';
-    //const T*
+    // int x = *myptr5;
+    // ++x;
+    // const int* constPtr = myptr5.get();
+    // // int* constPtr = myptr5.get();
+    // // const int* const b = myptr4.get();
+    // std::cout << "myptr5 " <<*myptr5 << '\n';
+    // // *constPtr = 44;
+    // std::cout << "myptr5 " <<*myptr5 << '\n';
+    // MyUniquePtr<int> myptr7(new int{77});
+    // int* constPtr7 = myptr7.get();
 
+    // =====testujemy==== T& operator*
 
+    MyUniquePtr<int> myptr8(new int{88});
+    std::cout << "*myptr: " << *myptr8 << "\n";
+    *myptr8 = 889;
+    std::cout << "*myptr: " << *myptr8 << "\n";
 
+    class Foo{
+    public:
+        int x = 90;
+    };
 
-    // MyUniquePtr<Foo> fooPtr(new Foo());
-    // std::cout << " foo " << fooPtr->x << '\n';
+    MyUniquePtr<Foo> fooPtr(new Foo());
+    std::cout << " foo " << fooPtr->x << '\n';
+    fooPtr->x = 99;
+    std::cout << " foo " << fooPtr->x << '\n';
     // MyUniquePtr<Foo> fooPtr2(std::move(fooPtr));
 
     // const MyUniquePtr<Foo> myptr6(new Foo());
@@ -75,6 +82,13 @@ int main() {
     // Foo* cfoo6 = myptr6.get();
     // cfoo6->x = 23;
     // std::cout  << "myptr6: " << myptr6->x << '\n';
+
+    //===ostream operator====
+    MyUniquePtr<int> myptr9;
+    std::cout << "fooptr: " << fooPtr << '\n';
+    std::cout << "myptr9: " << myptr9 << '\n';
+    int* ptr9 = nullptr;
+    std::cout << "ptr9: " << ptr9 << '\n';
 
     return 0;
 }
